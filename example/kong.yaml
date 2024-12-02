@@ -1,0 +1,92 @@
+---
+_format_version: "3.0"
+plugins:
+  - config:
+      echo_downstream: false
+      generator: uuid
+      header_name: x-correlation-id
+    enabled: true
+    name: correlation-id
+    protocols:
+      - http
+      - https
+  - config:
+      credentials: true
+      exposed_headers:
+        - etag
+      headers:
+        - Accept
+        - Content-Length
+        - Content-Type
+        - Date
+        - If-None-Match
+        - Credentials
+        - Authorization
+      max_age: 3600
+      methods:
+        - GET
+        - HEAD
+        - PUT
+        - PATCH
+        - POST
+        - DELETE
+        - OPTIONS
+        - TRACE
+        - CONNECT
+      origins:
+        - "http://localhost:4200"
+      preflight_continue: false
+    enabled: true
+    name: cors
+    protocols:
+      - http
+      - https
+services:
+  - connect_timeout: 30000
+    enabled: true
+    host: b.default.svc.cluster.local
+    name: b-service-api
+    path: /b-api
+    port: 3001
+    protocol: http
+    read_timeout: 30000
+    retries: 0
+    routes:
+      - https_redirect_status_code: 426
+        name: b-service-api
+        path_handling: v1
+        paths:
+          - /b-api
+        preserve_host: false
+        protocols:
+          - http
+          - https
+        regex_priority: 0
+        request_buffering: true
+        response_buffering: true
+        strip_path: true
+    write_timeout: 30000
+  - connect_timeout: 30000
+    enabled: true
+    host: a.default.svc.cluster.local
+    name: a-api
+    path: /a-api
+    port: 3001
+    protocol: http
+    read_timeout: 30000
+    retries: 0
+    routes:
+      - https_redirect_status_code: 426
+        name: a-api
+        path_handling: v1
+        paths:
+          - /a-api
+        preserve_host: false
+        protocols:
+          - http
+          - https
+        regex_priority: 0
+        request_buffering: true
+        response_buffering: true
+        strip_path: true
+    write_timeout: 30000
