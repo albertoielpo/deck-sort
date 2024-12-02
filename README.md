@@ -9,22 +9,20 @@ No other sorts are intended. Extends if needed
 ```bash
 cargo build --release
 # output bin file will be in target/release/deck-sort
-cp target/release/deck-sort deck-sort
-chmod +x deck-sort
 ```
 
 ## Usage
 
 ### Pipe concatenation
 ```bash
-cat example/kong.yaml | ./deck-sort
+cat example/kong.yaml | ./bin/deck-sort
 ```
 ### File references
 With backup
 ```bash
-./deck-sort example/kong.yaml true
+./bin/deck-sort example/kong.yaml true
 ```
 No backup
 ```bash
-./deck-sort example/kong.yaml
+./bin/deck-sort example/kong.yaml
 ```
