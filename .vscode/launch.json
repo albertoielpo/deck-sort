@@ -7,7 +7,7 @@
             "name": "Yaml sort",
             "program": "${workspaceRoot}/target/debug/deck-sort",
             "console": "integratedTerminal",
-            "args": ["/home/alberto/dev/git/rust/deck-sort/test/input.yaml", "true"],
+            "args": ["${workspaceRoot}/example/kong.yaml", "true"],
             "cwd": "${workspaceRoot}/target/debug/",
             "sourceLanguages": ["rust"]
         }
