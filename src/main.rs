@@ -29,9 +29,9 @@ fn sort_and_flush(content: &str, flush_type: FlushType) -> Result<(), Box<dyn Er
                 if ordering == Ordering::Greater || ordering == Ordering::Less {
                     return ordering;
                 }
-                // if are equals then order by path
-                let a = a["path"].as_str().unwrap_or_default();
-                let b = b["path"].as_str().unwrap_or_default();
+                // if are equals then order by name
+                let a = a["name"].as_str().unwrap_or_default();
+                let b = b["name"].as_str().unwrap_or_default();
                 return a.cmp(&b);
             });
         }

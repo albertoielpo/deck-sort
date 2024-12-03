@@ -1,7 +1,7 @@
 # Deck sort
 This project is an util to sort the yaml kong file used by deck
 
-This implementation sorts only the vector "services" included in the yaml file by "host" value and if equals by "path" value.
+This implementation sorts only the vector "services" included in the yaml file by "host" value and if equals by "name" value.
 
 No other sorts are intended. Extends if needed
 
@@ -12,7 +12,7 @@ cargo build --release
 ```
 
 ## Usage
-
+Current build is released under bin folder
 ### Pipe concatenation
 ```bash
 cat example/kong.yaml | ./bin/deck-sort
