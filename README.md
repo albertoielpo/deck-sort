@@ -6,9 +6,19 @@ This implementation sorts only the vector "services" included in the yaml file b
 No other sorts are intended. Extends if needed
 
 ## Build
+Requires rust installed
 ```bash
 cargo build --release
 # output bin file will be in target/release/deck-sort
+```
+
+## Build using docker
+The output file will be placed into bin/deck-sort and it's compiled using x86_64-unknown-linux-musl target. No local rust environment is required
+```bash
+docker build -t deck-sort-builder .
+docker create --name deck-sort-container deck-sort-builder
+docker cp deck-sort-container:/output/deck-sort bin/deck-sort
+docker rm deck-sort-container
 ```
 
 ## Usage
@@ -26,3 +36,4 @@ No backup
 ```bash
 ./bin/deck-sort example/kong.yaml
 ```
+
